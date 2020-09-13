@@ -1,0 +1,10 @@
+version: '3.6'
+services:
+  python3:
+    restart: always
+    build: .
+    container_name: 'python3.6_nlp_jp'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ./app:/root/app

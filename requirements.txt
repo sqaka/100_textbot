@@ -5,3 +5,5 @@ tensorflow==1.9.0
 keras==2.2.4
 gensim==3.4.0
 janome==0.3.7
+pykakasi==2.0.1
+click=7.1.2

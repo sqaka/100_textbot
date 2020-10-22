@@ -9,18 +9,19 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
 - run app/train_text.py to make models
 
 ## directry
-100_textbot\
-├── Dockerfile\
-|── docker-compose.yaml\
-|── requirements.txt\
-└── app\
-    |── train_txt.py\
-    |── (some models output in here)\
-    └── utils\
-        |── prepare_text.py\
-        |── (prepare_text.txt)\
-        |── (prepare_text.pickle)\
-        └── txt_data\
-            |── (please put base_text_data in here)\
-            └── chars.txt\
-            
+'''bash
+100_textbot
+├── Dockerfile
+|── docker-compose.yaml
+|── requirements.txt
+└── app
+    |── train_txt.py
+    |── (some models output in here)
+    └── utils
+        |── prepare_text.py
+        |── (prepare_text.txt)
+        |── (prepare_text.pickle)
+        └── txt_data
+            |── (please put base_text_data in here)
+            └── chars.txt
+'''

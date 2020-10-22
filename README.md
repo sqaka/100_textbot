@@ -9,7 +9,7 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
 - run app/train_text.py to make models
 
 ## directry
-100_textbot
+100_textbot\
 ├── Dockerfile\
 |── docker-compose.yaml\
 |── requirements.txt\

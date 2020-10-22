@@ -5,8 +5,8 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
 ## readme
 - please run docker in 100_textbot
 - please put base text data in app/utils/txt_data/
-- run app/utils/prepare_text.py and get .txt & .pickle files
-- run app/train_text.py to make models
+- run `app/utils/prepare_text.py` and get .txt & .pickle files
+- run `app/train_text.py` to make models
 
 ## directry
 ```

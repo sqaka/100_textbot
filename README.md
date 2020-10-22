@@ -9,7 +9,7 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
 - run app/train_text.py to make models
 
 ## directry
-'''bash
+```
 100_textbot
 ├── Dockerfile
 |── docker-compose.yaml
@@ -24,4 +24,4 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
         └── txt_data
             |── (please put base_text_data in here)
             └── chars.txt
-'''
+```

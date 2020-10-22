@@ -68,7 +68,6 @@ def make_vector(chars_list, char_indices, sentence_list, max_sentence_length):
     return n_char, x_encoder, x_decoder, t_decoder
 
 
-
 def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     batch_size = 32
     epochs = 500
@@ -103,17 +102,12 @@ def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     loss = history.history['loss']
     val_loss = history.history['val_loss']
 
-    # encoderのモデル
     encoder_model = Model(encoder_input, encoder_state_h)
-
-    # decoderのモデル
     decoder_state_in_h = Input(shape=(n_mid,))
     decoder_state_in = [decoder_state_in_h]
-
     decoder_output, decoder_state_h = decoder_lstm(decoder_input,
                                                    initial_state=decoder_state_in_h)
     decoder_output = decoder_dense(decoder_output)
-
     decoder_model = Model([decoder_input] + decoder_state_in,
                           [decoder_output, decoder_state_h])
     # モデルの保存

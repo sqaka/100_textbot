@@ -6,3 +6,4 @@ app/utils/txt_data/100.txt
 app/utils/prepare_text.txt
 app/utils/prepare_text.pickle
 app/utils/__pycache__
+app/test_txt.py

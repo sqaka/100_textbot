@@ -10,7 +10,6 @@ PICKLE_FILE = os.path.join('prepare_text.pickle')
 TEXT_FILE = os.path.join('prepare_text.txt')
 
 
-'''これはtest_models.py内に残す'''
 def respond(input_data, beta=5):
     encoder_model = load_model(ENCODER_MODEL)
     decoder_model = load_model(DECODER_MODEL)
@@ -38,7 +37,6 @@ def respond(input_data, beta=5):
     return respond_sentence
 
 
-'''utils内にmake_dict.pyを作り、そこからmoduleを読み込ませてすっきりさせる'''
 with open("utils/"+PICKLE_FILE, mode="rb") as chars:
     chars_list = pickle.load(chars)
     
@@ -52,7 +50,6 @@ for i, char in enumerate(chars_list):
     indices_char[i] = char
 
 
-'''utils内にmake_sentence.pyを作り、そこからmoduleを読み込ませてすっきりさせる'''
 with open("utils/"+TEXT_FILE, mode="r") as text:
     text = text.read()
     
@@ -92,7 +89,7 @@ for i in range(n_sample):
             
 print(x_encoder.shape)
 
-'''これはtest_models.py内に残す'''
+
 for i in range(100):  
     x_in = x_encoder[i:i+1]  # 入力
     responce = respond(x_in)  # 返答

@@ -72,9 +72,9 @@ def make_vector(chars_list, char_indices, sentence_list, max_sentence_length):
 
 def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     '''train and save models'''
-    batch_size = 16
-    epochs = 10
-    n_mid = 64
+    batch_size = 32
+    epochs = 100
+    n_mid = 128
 
     encoder_input = Input(shape=(None, n_char))
     encoder_mask = Masking(mask_value=0)
@@ -94,7 +94,7 @@ def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     model.compile(loss="categorical_crossentropy", optimizer="rmsprop")
     print(model.summary())
 
-    early_stopping = EarlyStopping(monitor="val_loss", patience=30) 
+    early_stopping = EarlyStopping(monitor="val_loss", patience=5) 
 
     history = model.fit([x_encoder, x_decoder], t_decoder,
                         batch_size=batch_size,

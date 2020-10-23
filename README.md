@@ -16,7 +16,8 @@ almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
 |── requirements.txt
 └── app
     |── train_txt.py
-    |── (some models output in here)
+    |── (encoder_model.h5)
+    |── (decoder_model.h5)
     └── utils
         |── prepare_text.py
         |── (prepare_text.txt)

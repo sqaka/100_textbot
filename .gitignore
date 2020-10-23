@@ -7,3 +7,5 @@ app/utils/prepare_text.txt
 app/utils/prepare_text.pickle
 app/utils/__pycache__
 app/test_txt.py
+app/encoder_model.h5
+app/decoder_model.h5

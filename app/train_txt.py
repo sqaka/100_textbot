@@ -10,20 +10,21 @@ import click
 
 
 def make_dict(pkl_file):
+    '''make dictionary using chars & keys'''
     with open("utils/"+pkl_file, mode="rb") as chars:
         chars_list = pickle.load(chars)
 
-    # インデックスと文字で辞書を作成
-    char_indices = {}  # 文字がキーでインデックスが値
+    char_indices = {} 
     for i, char in enumerate(chars_list):
         char_indices[char] = i
-    indices_char = {}  # インデックスがキーで文字が値
+    indices_char = {}
     for i, char in enumerate(chars_list):
         indices_char[i] = char
     return chars_list, char_indices
 
 
 def make_sentence(txt_file):
+    '''make sentences by textfile'''
     with open("utils/"+txt_file, mode="r") as text:
         text = text.read()
     
@@ -39,29 +40,30 @@ def make_sentence(txt_file):
 
 
 def make_vector(chars_list, char_indices, sentence_list, max_sentence_length):
-    n_char = len(chars_list)  # 文字の種類の数
-    n_sample = len(sentence_list) - 1  # サンプル数
+    '''make one-hot encoder & decoder'''
+    n_char = len(chars_list)
+    n_sample = len(sentence_list) - 1
 
-    x_sentences = []  # 入力の文章
-    t_sentences = []  # 正解の文章
+    x_sentences = []
+    t_sentences = []
     for i in range(n_sample):
         x_sentences.append(sentence_list[i])
-        t_sentences.append("\t" + sentence_list[i+1] + "\n")  # 正解は先頭にタブ、末尾に改行を加える
-    max_length_x = max_sentence_length  # 入力文章の最大長さ
-    max_length_t = max_sentence_length + 2  # 正解文章の最大長さ
+        t_sentences.append("\t" + sentence_list[i+1] + "\n")
+    max_length_x = max_sentence_length
+    max_length_t = max_sentence_length + 2
 
-    x_encoder = np.zeros((n_sample, max_length_x, n_char), dtype=np.bool)  # encoderへの入力
-    x_decoder = np.zeros((n_sample, max_length_t, n_char), dtype=np.bool)  # decoderへの入力
-    t_decoder = np.zeros((n_sample, max_length_t, n_char), dtype=np.bool)  # decoderの正解
+    x_encoder = np.zeros((n_sample, max_length_x, n_char), dtype=np.bool)
+    x_decoder = np.zeros((n_sample, max_length_t, n_char), dtype=np.bool)
+    t_decoder = np.zeros((n_sample, max_length_t, n_char), dtype=np.bool)
 
     for i in range(n_sample):
         x_sentence = x_sentences[i]
         t_sentence = t_sentences[i]
         for j, char in enumerate(x_sentence):
-            x_encoder[i, j, char_indices[char]] = 1  # encoderへの入力をone-hot表現で表す
+            x_encoder[i, j, char_indices[char]] = 1
         for j, char in enumerate(t_sentence):
-            x_decoder[i, j, char_indices[char]] = 1  # decoderへの入力をone-hot表現で表す
-            if j > 0:  # 正解は入力より1つ前の時刻のものにする
+            x_decoder[i, j, char_indices[char]] = 1
+            if j > 0:
                 t_decoder[i, j-1, char_indices[char]] = 1
             
     print(x_encoder.shape)
@@ -69,9 +71,10 @@ def make_vector(chars_list, char_indices, sentence_list, max_sentence_length):
 
 
 def train_txt(n_char, x_encoder, x_decoder, t_decoder):
-    batch_size = 32
-    epochs = 500
-    n_mid = 256
+    '''train and save models'''
+    batch_size = 16
+    epochs = 10
+    n_mid = 64
 
     encoder_input = Input(shape=(None, n_char))
     encoder_mask = Masking(mask_value=0)
@@ -110,7 +113,7 @@ def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     decoder_output = decoder_dense(decoder_output)
     decoder_model = Model([decoder_input] + decoder_state_in,
                           [decoder_output, decoder_state_h])
-    # モデルの保存
+    
     encoder_model.save('encoder_model.h5')
     decoder_model.save('decoder_model.h5')
 
@@ -118,6 +121,7 @@ def train_txt(n_char, x_encoder, x_decoder, t_decoder):
 
 
 def view_plot(loss, val_loss):
+    '''plot the graph'''
     plt.plot(np.arange(len(loss)), loss)
     plt.plot(np.arange(len(val_loss)), val_loss)
     plt.show()

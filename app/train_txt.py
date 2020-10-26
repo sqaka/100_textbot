@@ -9,6 +9,11 @@ import matplotlib.pyplot as plt
 import click
 
 
+BATCH_SIZE = 32
+EPOCHS = 100
+N_MID = 256
+
+
 def make_dict(pkl_file):
     '''make dictionary using chars & keys'''
     with open("utils/"+pkl_file, mode="rb") as chars:
@@ -72,9 +77,9 @@ def make_vector(chars_list, char_indices, sentence_list, max_sentence_length):
 
 def train_txt(n_char, x_encoder, x_decoder, t_decoder):
     '''train and save models'''
-    batch_size = 32
-    epochs = 100
-    n_mid = 128
+    batch_size = BATCH_SIZE
+    epochs = EPOCHS
+    n_mid = N_MID
 
     encoder_input = Input(shape=(None, n_char))
     encoder_mask = Masking(mask_value=0)

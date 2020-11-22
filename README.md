@@ -1,8 +1,11 @@
 ## notice
-almost all source code by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
+almost all source code by 
+textbot by Udemy: https://www.udemy.com/share/101WUgAkcTc1hWRH4=/
+Flask and Docker: https://github.com/nsuhara/python-docker-flask
+web UI design: https://knaka0209.hatenablog.com/entry/NLP_6_web
 
 
-## readme
+## readme for training models
 - please put base_text_data in app/utils/txt_data/
 
 ### using virtualenv

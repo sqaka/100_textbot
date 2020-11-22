@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 .vscode
+.venv
 
 app/test_txt.py
 app/encoder_model.h5
